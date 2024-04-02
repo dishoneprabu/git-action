@@ -1,0 +1,12 @@
+name: webhook
+on:
+  repository_dispatch:
+    types:
+      - cve_checks_passed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build Docker image
+      run: echo "Hi There"
