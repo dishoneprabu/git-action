@@ -1,6 +1,7 @@
 name: webhook-trigger-Job
 on: 
   repository_dispatch:
+      types: [*]
 
 
 # jobs:
