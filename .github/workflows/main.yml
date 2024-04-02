@@ -9,7 +9,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v3.0.0
       with:
         token: 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
-        repository: ${{ github.repository }}
+        repository: dishoneprabu/git-action
         event-type:  my-event
         client-payload: '{"github": ${{ toJson(github) }}}'
         
