@@ -23,5 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build Docker image
-      run: echo "Hello World"
+      run: |
+        echo "Hello World"
+        env
         
