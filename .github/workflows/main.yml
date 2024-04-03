@@ -1,14 +1,14 @@
 name: webhook-trigger-Job
-# on: 
-#   repository_dispatch:
-#       types: [*]
+on: 
+  repository_dispatch:
+      types: [trigger]
 
-on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Name of the person'
-        required: true
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       name:
+#         description: 'Name of the person'
+#         required: true
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
@@ -29,9 +29,7 @@ jobs:
       run: |
         echo "Hello World"
         env
-        echo "Event name: ${{ github.event_name }}"
-        echo "Ref: ${{ github.ref }}"
-        echo "Inputs: ${{ toJson(github.event.inputs) }}"
-        echo "Event type: ${{ github.event_type }}"
+        echo "Event name: ${{ github.push_data }}"
+
 
         
