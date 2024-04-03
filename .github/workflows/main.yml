@@ -29,7 +29,7 @@ jobs:
       run: |
         echo "Hello World"
         env
-        echo ${{ toJson(github.event.client_payload) }}
+        echo ${{ github.event.client_payload.push_data.tag }}
 
 
         
