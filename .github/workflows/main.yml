@@ -29,6 +29,8 @@ jobs:
       run: |
         echo "Hello World"
         env
-        echo ${{ toJson(github.event.client_payload }}
+        echo "Event name: ${{ github.event_name }}"
+        echo "Ref: ${{ github.ref }}"
+        echo "Inputs: ${{ toJson(github.event.inputs) }}"
 
         
