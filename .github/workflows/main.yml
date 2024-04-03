@@ -32,5 +32,6 @@ jobs:
         echo "Event name: ${{ github.event_name }}"
         echo "Ref: ${{ github.ref }}"
         echo "Inputs: ${{ toJson(github.event.inputs) }}"
+        echo "Event type: ${{ github.event_type }}"
 
         
