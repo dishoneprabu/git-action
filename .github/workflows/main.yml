@@ -1,8 +1,10 @@
 name: webhook-trigger-Job
-on: 
-  repository_dispatch:
-      types: [*]
+# on: 
+#   repository_dispatch:
+#       types: [*]
 
+on:
+  workflow_dispatch:
 
 # jobs:
 #   build:
