@@ -5,7 +5,10 @@ name: webhook-trigger-Job
 
 on:
   workflow_dispatch:
-
+    inputs:
+      name:
+        description: 'Name of the person'
+        required: true
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
