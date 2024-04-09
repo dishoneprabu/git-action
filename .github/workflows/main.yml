@@ -1,7 +1,7 @@
 name: webhook-trigger-Job
 on: 
   repository_dispatch:
-#       types: [trigger]
+      types: [trigger]
 
 # on:
 #   workflow_dispatch:
