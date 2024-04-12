@@ -44,6 +44,29 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: whitelisting IP address
+      run: |
+        ipaddress=$(curl -s $(RETRIVE-IP))
+        az acr network-rule add -n $(ACR-NAME)  --ip-address ${ipaddress}
+        
+        #Counter variable
+        count=0
+
+        while [ $count -lt 12 ]
+        do
+        	whitelisted_ip=$(az acr network-rule list -n $(ACR-NAME)   | jq '.ipRules[] | select(.ipAddressOrRange == "'${ipaddress}'")')
+          if [ ! -z "$whitelisted_ip" ]; then
+            echo "IP has been whitelisted"
+            break
+          fi
+          echo "retrying after 10 sec, Checking if whitelist reflects backend"
+          sleep 10
+          count=$((count+1))
+          if [$count -eq 12];then
+          exit 127
+          fi
+        done
         
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1
@@ -57,5 +80,7 @@ jobs:
         docker tag dishoneprabu/j2dk:j2dk.in azurecontinerregistery.azurecr.io/j2dk:j2dk.in
         docker push azurecontinerregistery.azurecr.io/j2dk:j2dk.in
 
+
+        
 
     
