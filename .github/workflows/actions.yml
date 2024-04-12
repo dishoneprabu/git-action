@@ -48,14 +48,14 @@ jobs:
     - name: whitelisting IP address
       run: |
         ipaddress=$(curl -s ifconfig.me )
-        az acr network-rule add -n $(ACR_NAME)  --ip-address ${ipaddress}
+        az acr network-rule add -n $REPO --ip-address ${ipaddress}
         
         #Counter variable
         count=0
 
         while [ $count -lt 12 ]
         do
-        	whitelisted_ip=$(az acr network-rule list -n $(ACR_NAME)   | jq '.ipRules[] | select(.ipAddressOrRange == "'${ipaddress}'")')
+        	whitelisted_ip=$(az acr network-rule list -n $REPO   | jq '.ipRules[] | select(.ipAddressOrRange == "'${ipaddress}'")')
           if [ ! -z "$whitelisted_ip" ]; then
             echo "IP has been whitelisted"
             break
@@ -67,6 +67,8 @@ jobs:
           exit 127
           fi
         done
+      env:
+        REPO: azurecontinerregistery
         
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1
