@@ -41,5 +41,10 @@ jobs:
         password: ${{ secrets.ACR_PASSWORD }}
         login-server: azurecontinerregistery.azurecr.io
 
+    - name: Push docker image
+      run: |
+        docker tag dishoneprabu/j2dk:j2dk.in azurecontinerregistery.azurecr.io/j2dk:j2dk.in
+        docker push azurecontinerregistery.azurecr.io/j2dk:j2dk.in
+
 
     
