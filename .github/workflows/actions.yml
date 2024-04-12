@@ -113,7 +113,7 @@ jobs:
              --from "$FROM" \
              --to "$TO" \
              --header "Subject: $SUBJECT" \
-             --body-html "$BODY" \
+             --body "$BODY" \
              --attach "$ATTACHMENT"
 
         
