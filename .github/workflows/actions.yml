@@ -28,15 +28,23 @@ jobs:
       uses: aquasecurity/trivy-action@0.19.0
       with:
         image-ref: dishoneprabu/j2dk:j2dk.in
-        format: template
-        template: "@/contrib/junit.tpl"
-        output: ./report.xml
+        # format: template
+        # template: "@/contrib/junit.tpl"
+        # output: ./report.xml
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: trivy report publisher to git security
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
+  
         
     - name: Upload the trivy Artifact
       uses: actions/upload-artifact@v4.3.1
       with:
         name: trivy-report
-        path: ./report.xml
+        path: 'trivy-results.sarif'
 
     - name: 'Az CLI login'
       uses: azure/login@v2.0.0
@@ -83,6 +91,7 @@ jobs:
         docker push azurecontinerregistery.azurecr.io/j2dk:j2dk.in
 
     - name: remove ip
+      if: always()
       run: |
         ipaddress=$(curl -s ifconfig.me )
         az acr network-rule remove -n $REPO  --ip-address ${ipaddress}
