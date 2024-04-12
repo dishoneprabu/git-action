@@ -68,12 +68,9 @@ jobs:
           exit 127
           fi
         done
+        sleep 30
       env:
-        REPO: azurecontinerregistery
-    
-    - name: Whitelist checker
-      run: |
-        az acr check-health --name "azurecontinerregistery"             
+        REPO: azurecontinerregistery     
         
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1.0.1
