@@ -68,6 +68,7 @@ jobs:
           exit 127
           fi
         done
+        sleep 30
       env:
         REPO: azurecontinerregistery
         
