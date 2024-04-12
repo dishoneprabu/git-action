@@ -33,6 +33,13 @@ jobs:
       with:
         name: trivy-report
         path: ./report.xml
+
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1
