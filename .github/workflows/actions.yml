@@ -72,21 +72,8 @@ jobs:
         REPO: azurecontinerregistery
     
     - name: Whitelist checker
-      uses: Azure/cli@v2.0.0
-      with:
-        inlineScript: |
-            count=0
-            while [ $count -lt 100 ]; do
-                az acr check-health --name "azurecontinerregistery"
-                if [ $? -eq 0 ]; then
-                    echo "ACR is Accessible"
-                    exit 127
-                else
-                    echo "The ACR health check failed. Retrying after 5 seconds."
-                    sleep 5
-                fi
-                count=$((count+1))
-            done              
+      run: |
+        az acr check-health --name "azurecontinerregistery"             
         
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1.0.1
