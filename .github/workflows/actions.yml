@@ -33,6 +33,13 @@ jobs:
       with:
         name: trivy-report
         path: ./report.xml
+        
+    - name: Azure Container Registry Login
+      uses: Azure/docker-login@v1
+      with:
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+        login-server: azurecontinerregistery.azurecr.io
 
 
     
