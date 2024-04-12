@@ -91,6 +91,31 @@ jobs:
       env:
         REPO: azurecontinerregistery
 
+    - name: sending email
+      run: |
+        sudo apt install swaks -y
+        FROM="notificationj2dk@gmail.com"
+        TO="dishoneprabu959@gmail.com"
+        SUBJECT="Subject of the email"
+        BODY="Please find the report attached"
+        ATTACHMENT="./report.html"
+
+        SMTP_SERVER="smtp.gmail.com"
+        SMTP_PORT="587"
+        SMTP_USERNAME="notificationj2dk@gmail.com"
+        SMTP_PASSWORD="clgqykzvqrmyjkmy"
+
+        swaks --tls \
+             --server "$SMTP_SERVER" \
+             --port "$SMTP_PORT" \
+             --auth-user "$SMTP_USERNAME" \
+             --auth-password "$SMTP_PASSWORD" \
+             --from "$FROM" \
+             --to "$TO" \
+             --header "Subject: $SUBJECT" \
+             --body-html "$BODY" \
+             --attach "$ATTACHMENT"
+
         
 
     
