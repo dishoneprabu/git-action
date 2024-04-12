@@ -68,6 +68,7 @@ jobs:
           fi
         done
         sleep 30
+        ls
       env:
         REPO: azurecontinerregistery     
         
