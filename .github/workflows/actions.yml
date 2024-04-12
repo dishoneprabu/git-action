@@ -31,9 +31,16 @@ jobs:
         # format: template
         # template: "@/contrib/junit.tpl"
         # output: ./report.xml
-        format: 'sarif'
-        output: 'trivy-results.sarif'  
+        format: 'json'
+        output: 'result.json' 
         
+    - name: scan result publish
+      uses: CemitDigital/trivy-report-issue-action@v1.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        input-filename: "result.json"
+        
+      
     - name: Upload the trivy Artifact
       uses: actions/upload-artifact@v4.3.1
       with:
