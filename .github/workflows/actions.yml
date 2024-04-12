@@ -82,6 +82,12 @@ jobs:
         docker tag dishoneprabu/j2dk:j2dk.in azurecontinerregistery.azurecr.io/j2dk:j2dk.in
         docker push azurecontinerregistery.azurecr.io/j2dk:j2dk.in
 
+    - name: remove ip
+      run: |
+        ipaddress=$(curl -s ifconfig.me )
+        az acr network-rule remove -n $REPO  --ip-address ${ipaddress}
+      env:
+        REPO: azurecontinerregistery
 
         
 
