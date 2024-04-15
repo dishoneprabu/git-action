@@ -40,15 +40,14 @@ jobs:
         # github-pat: ${{ secrets.GITHUBTOKEN }}
         # severity: "HIGH"
         # scanners: "vuln"
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Upload Trivy scan results to GitHub Security tab
+        format: "json"
+        severity: "HIGH,CRITICAL"
+        output: "trivy_results.json"
+          
+    - name: Upload Trivy Results
       uses: github/codeql-action/upload-sarif@v3
       with:
-        sarif_file: 'trivy-results.sarif'
+        sarif_file: trivy_results.json
         
     - name: Upload the trivy Artifact
       uses: actions/upload-artifact@v4.3.1
