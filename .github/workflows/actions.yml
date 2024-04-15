@@ -111,7 +111,7 @@ jobs:
 
     #     SMTP_SERVER="smtp.gmail.com"
     #     SMTP_PORT="587"
-    #     SMTP_USERNAME="notificationj2dk@gmail.com"
+    #     SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}
     #     SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
 
     #     swaks --tls \
