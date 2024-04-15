@@ -5,10 +5,10 @@ on:
     - main
   workflow_dispatch:
 
-permissions:
-      id-token: write
-      contents: write
-      actions: write
+permissions: write-all
+      # id-token: write
+      # contents: write
+      # actions: write
   
 jobs:
   QA:
