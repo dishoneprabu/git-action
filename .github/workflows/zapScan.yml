@@ -1,0 +1,17 @@
+name: ZAP Scan
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  Scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.10.0
+        with:
+          target: $target_url
+        env:
+          target_url: "https://j2dk.in/"
