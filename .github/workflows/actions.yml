@@ -40,7 +40,8 @@ jobs:
         # output: 'dependency-results.sbom.json'
         # severity: "HIGH"
         # scanners: "vuln"
-        format: 'sarif'
+        format: 'template'
+        template: '@/contrib/sarif.tpl'
         output: 'trivy-results.sarif'
           
     - name: Upload Trivy Results
