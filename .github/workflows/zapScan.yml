@@ -6,6 +6,7 @@ on:
 jobs:
   Scan:
     runs-on: ubuntu-latest
+    environment: qa
     steps:
       - uses: actions/checkout@v3
 
