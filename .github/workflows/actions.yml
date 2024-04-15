@@ -41,7 +41,6 @@ jobs:
         # severity: "HIGH"
         # scanners: "vuln"
         format: 'sarif'
-        severity: "HIGH,CRITICAL"
         output: 'trivy-results.sarif'
           
     - name: Upload Trivy Results
