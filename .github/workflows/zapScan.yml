@@ -13,6 +13,5 @@ jobs:
       - name: ZAP Full Scan
         uses: zaproxy/action-full-scan@v0.10.0
         with:
-          target: $target_url
-        env:
-          target_url: "https://j2dk.in/"
+          target: 'https://j2dk.in/'
+
