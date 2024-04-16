@@ -2,6 +2,13 @@ name: ZAP Scan
 
 on:
   workflow_dispatch:
+    inputs:
+      url:
+        description: "Web URL"
+        required: true
+      scan_type:
+        description: "Baseline or Full scan"
+        required: true
   
 jobs:
   Scan:
