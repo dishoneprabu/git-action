@@ -3,16 +3,16 @@ name: ZAP Scan
 on:
   workflow_dispatch:
     inputs:
-      url:
-        description: "Web URL"
-        required: true
-      scan_type:
-        description: "Baseline or Full scan"
-        required: true
-        type: choice
-        options:
-          - "Full"
-          - "Baseline"
+      # url:
+      #   description: "Web URL"
+      #   required: true
+      # scan_type:
+      #   description: "Baseline or Full scan"
+      #   required: true
+      #   type: choice
+      #   options:
+      #     - "Full"
+      #     - "Baseline"
       environment:
         description: 'Environment to run tests against'
         type: environment
