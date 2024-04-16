@@ -3,20 +3,13 @@ name: ZAP Scan
 on:
   workflow_dispatch:
     inputs:
-      scan:
-        description: "Enable Full Scan"
-        type: boolean
-        required: true
-      # scan_type:
-      #   description: "Baseline or Full scan"
-      #   required: true
-      #   type: choice
-      #   options:
-      #     - "Full"
-      #     - "Baseline"
       environment:
         description: 'Environment to run tests against'
         type: environment
+        required: true
+      scan:
+        description: "Enable Full Scan"
+        type: boolean
         required: true
   
 jobs:
@@ -25,11 +18,11 @@ jobs:
     name: Scan on QA
     environment: ${{ github.event.inputs.environment }}
     steps:
-      # - name: ZAP Full Scan
-      #   if: github.event.inputs.scan == 'true'
-      #   uses: zaproxy/action-full-scan@v0.10.0
-      #   with:
-      #     target: ${{ vars.SCAN_URL }}
+      - name: ZAP Full Scan
+        if: github.event.inputs.scan == 'true'
+        uses: zaproxy/action-full-scan@v0.10.0
+        with:
+          target: ${{ vars.SCAN_URL }}
           
       - name: ZAP Baseline Scan
         if: github.event.inputs.scan == 'false'
