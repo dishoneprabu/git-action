@@ -30,3 +30,11 @@ jobs:
         with:
           target: ${{ vars.SCAN_URL }}
 
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: zap-report
+          path: report_html.html
+
+    
+
