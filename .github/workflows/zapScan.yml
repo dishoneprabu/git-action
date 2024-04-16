@@ -21,12 +21,14 @@ on:
 jobs:
   Scan:
     runs-on: ubuntu-latest
-    environment: qa
     steps:
       - uses: actions/checkout@v3
+      - name: echo
+        run: |
+          echo ${{ variables.SCAN_URL }}
 
-      - name: ZAP Full Scan
-        uses: zaproxy/action-full-scan@v0.10.0
-        with:
-          target: 'https://j2dk.in/'
+      # - name: ZAP Full Scan
+      #   uses: zaproxy/action-full-scan@v0.10.0
+      #   with:
+      #     target: 'https://j2dk.in/'
 
