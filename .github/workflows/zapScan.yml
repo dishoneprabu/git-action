@@ -25,7 +25,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: echo
         run: |
-          echo ${{ vars.SCAN_URL }}
+          echo ${{ vars.SCAN_URL }} > log.txt
+          cat log.txt
 
       # - name: ZAP Full Scan
       #   uses: zaproxy/action-full-scan@v0.10.0
