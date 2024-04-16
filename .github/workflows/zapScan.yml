@@ -3,9 +3,10 @@ name: ZAP Scan
 on:
   workflow_dispatch:
     inputs:
-      # url:
-      #   description: "Web URL"
-      #   required: true
+      scan:
+        description: "Enable Full Scan"
+        type: boolean
+        required: true
       # scan_type:
       #   description: "Baseline or Full scan"
       #   required: true
@@ -21,18 +22,18 @@ on:
 jobs:
   Scan:
     runs-on: ubuntu-latest
-    name: Run on QA
-    environment: # ${{ github.event.inputs.environment }}
-      name: qa
+    name: Scan on QA
+    environment: ${{ github.event.inputs.environment }}
     steps:
-      - uses: actions/checkout@v3
-      - name: echo
-        run: |
-          echo "${{ vars.SCAN_URL }}" > log.txt
-          cat log.txt
-
-      # - name: ZAP Full Scan
-      #   uses: zaproxy/action-full-scan@v0.10.0
-      #   with:
-      #     target: 'https://j2dk.in/'
+      - name: ZAP Full Scan
+        if: github.event.inputs.scan == true
+        uses: zaproxy/action-full-scan@v0.10.0
+        with:
+          target: ${{ vars.SCAN_URL }}
+          
+      - name: ZAP Baseline Scan
+        if: github.event.inputs.scan == false
+        uses: zaproxy/action-baseline@v0.12.0
+        with:
+          target: ${{ vars.SCAN_URL }}
 
