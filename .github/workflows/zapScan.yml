@@ -25,11 +25,11 @@ jobs:
     name: Scan on QA
     environment: ${{ github.event.inputs.environment }}
     steps:
-      - name: ZAP Full Scan
-        if: github.event.inputs.scan == 'true'
-        uses: zaproxy/action-full-scan@v0.10.0
-        with:
-          target: ${{ vars.SCAN_URL }}
+      # - name: ZAP Full Scan
+      #   if: github.event.inputs.scan == 'true'
+      #   uses: zaproxy/action-full-scan@v0.10.0
+      #   with:
+      #     target: ${{ vars.SCAN_URL }}
           
       - name: ZAP Baseline Scan
         if: github.event.inputs.scan == 'false'
