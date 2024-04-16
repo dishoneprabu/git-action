@@ -117,7 +117,7 @@ jobs:
         TO="dishoneprabu959@gmail.com"
         SUBJECT="Subject of the email"
         BODY="Please find the report attached"
-        ATTACHMENT="./report.html"
+        ATTACHMENT="trivy-report.html"
 
         SMTP_SERVER="smtp.gmail.com"
         SMTP_PORT="587"
