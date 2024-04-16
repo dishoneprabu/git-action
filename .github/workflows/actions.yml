@@ -37,13 +37,20 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}   
 
+    - name: 'Az CLI login'
+      uses: Azure/login@v2.0.0
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
     - name: pull docker image
       run: docker pull ${{ github.event.inputs.dockerhub_image_repository }}:${{ github.event.inputs.dockerhub_image_tag }}
 
     - name: Aqua Security Trivy
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'nginx:latest'
+        image-ref: '${{ github.event.inputs.dockerhub_image_repository }}:${{ github.event.inputs.dockerhub_image_tag }}'
         format: 'template'
         template: '@/contrib/html.tpl'
         output: 'trivy-report.html'
@@ -62,12 +69,6 @@ jobs:
         name: trivy-report
         path: trivy-report.html
 
-    - name: 'Az CLI login'
-      uses: Azure/login@v2.0.0
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: whitelisting IP address
       run: |
