@@ -1,6 +1,19 @@
 name: Action
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+      dockerhub_image_repository:
+        description: 'Contain the name of image repository with namespace, eg. "centegytechnologies/menu"'
+        type: string
+        required: true
+      dockerhub_image_tag:
+        description: 'Contain the image tag value, eg. "Latest, or 1.0.6 etc..."'
+        type: string
+        required: true
 
 permissions: 
       id-token: write
@@ -11,10 +24,7 @@ permissions:
 jobs:
   QA:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [qa]
-    # environment: qa
+    environment: ${{ github.event.inputs.environment }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -25,26 +35,26 @@ jobs:
         password: ${{ secrets.PASSWORD }}   
 
     - name: pull docker image
-      run: docker pull dishoneprabu/j2dk:j2dk.in
+      run: docker pull ${{ github.event.inputs.dockerhub_image_repository }}:${{ github.event.inputs.dockerhub_image_tag }}
 
     - name: Aqua Security Trivy
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: 'nginx:latest'
         format: 'template'
-        template: '@/contrib/sarif.tpl'
-        output: 'trivy-results.sarif'
+        template: '@/contrib/html.tpl'
+        output: 'trivy-report.html'
           
-    - name: Upload Trivy Results
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: 'trivy-results.sarif'
+    # - name: Upload Trivy Results
+    #   uses: github/codeql-action/upload-sarif@v3
+    #   with:
+    #     sarif_file: 'trivy-results.sarif'
         
     - name: Upload the trivy Artifact
       uses: actions/upload-artifact@v4.3.1
       with:
         name: trivy-report
-        path: trivy-results.sarif
+        path: trivy-report.html
 
     - name: 'Az CLI login'
       uses: Azure/login@v2.0.0
