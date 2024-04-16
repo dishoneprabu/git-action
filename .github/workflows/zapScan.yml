@@ -23,14 +23,16 @@ jobs:
         uses: zaproxy/action-full-scan@v0.10.0
         with:
           target: ${{ vars.SCAN_URL }}
-          artifact_name: zap-scan-report.zip
+          artifact_name: zap-scan-report
+          issue_title: ZAP Full Scan Report ${{ github.event.created_at }}
           
       - name: ZAP Baseline Scan
         if: github.event.inputs.scan == 'false'
         uses: zaproxy/action-baseline@v0.12.0
         with:
           target: ${{ vars.SCAN_URL }}
-          artifact_name: zap-scan-report.zip
+          artifact_name: zap-scan-report
+          issue_title: ZAP Scan Baseline Report ${{ github.event.created_at }}
 
 
     
