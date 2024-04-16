@@ -9,9 +9,9 @@ on:
       scan_type:
         description: "Baseline or Full scan"
         required: true
-        type: multi-choice
+        type: choice
         options:
-          - "FUll"
+          - "Full"
           - "Baseline"
   
 jobs:
