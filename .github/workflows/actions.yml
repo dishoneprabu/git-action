@@ -22,7 +22,7 @@ permissions:
       security-events: write
   
 jobs:
-  QA:
+  CICD:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
