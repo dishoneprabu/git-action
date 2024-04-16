@@ -13,6 +13,10 @@ on:
         options:
           - "Full"
           - "Baseline"
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
   
 jobs:
   Scan:
