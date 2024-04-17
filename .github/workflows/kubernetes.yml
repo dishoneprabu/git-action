@@ -56,4 +56,4 @@ jobs:
       with:
         namespace: apps
         manifests: |
-          {{ vars.GITHUB_ACTION_PATH }}/deployment.yaml
+          '{{ vars.GITHUB_ACTION_PATH }}'/deployment.yaml
