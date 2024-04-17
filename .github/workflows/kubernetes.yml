@@ -55,6 +55,6 @@ jobs:
       uses: Azure/k8s-deploy@v4.9
       with:
         namespace: apps
+        private-cluster: true
         manifests: |
-            /home/runner/work/git-action/git-action/deployment.yaml
-       
+            ser       
