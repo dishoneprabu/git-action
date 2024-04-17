@@ -56,4 +56,4 @@ jobs:
       with:
         namespace: apps
         manifests: |
-          '{{ vars.GITHUB_ACTION_PATH }}'/deployment.yaml
+          /home/runner/work/git-action/git-action/deployment.yaml
