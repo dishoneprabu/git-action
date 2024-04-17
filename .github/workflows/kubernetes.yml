@@ -56,4 +56,5 @@ jobs:
       with:
         namespace: apps
         manifests: |
-          /home/runner/work/git-action/git-action/deployment.yaml
+            /home/runner/work/git-action/git-action/deployment.yaml
+       
