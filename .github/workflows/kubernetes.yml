@@ -56,4 +56,5 @@ jobs:
       with:
         namespace: apps
         manifests: |
-          deployment.yaml  
+          deployment.yaml
+        images: 'nginx:stable-bullseye-perl'
