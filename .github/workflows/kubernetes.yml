@@ -6,14 +6,6 @@ on:
         description: 'Environment to run tests against'
         type: environment
         required: true
-      dockerhub_image_repository:
-        description: 'Contain the name of image repository with namespace, eg. "centegytechnologies/menu"'
-        type: string
-        required: true
-      dockerhub_image_tag:
-        description: 'Contain the image tag value, eg. "Latest, or 1.0.6 etc..."'
-        type: string
-        required: true
 
 permissions: 
     id-token: write
