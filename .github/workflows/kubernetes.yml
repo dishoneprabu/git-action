@@ -38,7 +38,7 @@ jobs:
     - uses: azure/setup-kubectl@v4    
 
     - name: Set Kubernetes Context
-      uses: azure/aks-set-context@v3
+      uses: azure/aks-set-context@v4
       with:
         cluster-name: 'kubernetes-cluster'
         resource-group: 'kubernetes'
